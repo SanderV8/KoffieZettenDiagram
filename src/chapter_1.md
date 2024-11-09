@@ -1,60 +1,31 @@
 # Chapter 1
 
-skjflakjfds
-
 ```plantuml
 
 @startuml 
 
-skinparam backgroundColor transparent
-left to right direction
+actor Gebruiker
+participant "Koffiemachine" as Machine
+participant "Waterreservoir" as Reservoir
+participant "Koffiebonenmaler" as Maler
+participant "Filterhouder" as Filter
+participant "Kopje" as Kopje
 
-component box_pickup_application {
-    
-    [frame]
-    () placement -u- frame
-    [robot]
-    () input_0 -- robot
-    () output_0 -- robot
-    () "end\neffector" -- robot
+Gebruiker -> Machine: Waterreservoir vullen
+Machine -> Reservoir: Water toevoegen
 
-    [sensor]
-    sensor --> input_0 : connected
-    sensor --> "sensor\nposition"
-    
-    robot -> placement
+Gebruiker -> Maler: Koffiebonen malen
+Maler -> Gebruiker: Gemalen koffie
 
-    [cabinet]
-    () "robot\npower" -- cabinet
-    () "conveyor\npower" -- cabinet
-   
-    cabinet -u-> placement
-    robot --> "robot\npower"
-    cabinet -r-> output_0
-    
-    [conveyor]
-    () "sensor\nposition" -- conveyor
-    () "box\nposition" -- conveyor
-    conveyor -> placement
-    conveyor --> "conveyor\npower"
+Gebruiker -> Filter: Filter plaatsen
+Gebruiker -> Filter: Gemalen koffie toevoegen in filter
 
-    [box]
-    () shape -- box
-    
-    [gripper]
-    gripper -l-> shape
-    
-    box --> "box\nposition"
-    gripper --> "end\neffector"
-}
+Gebruiker -> Machine: Koffiemachine aanzetten
+Machine -> Reservoir: Water verwarmen
+Machine -> Filter: Heet water door koffie gieten
+Filter -> Kopje: Koffie laten doorlopen
 
-[building]
-
-() energy -l- building
-() location -d- building
-
-frame --> location
-cabinet -r-> energy
+Gebruiker -> Kopje: Koffie inschenken
 
 @enduml
 ```
