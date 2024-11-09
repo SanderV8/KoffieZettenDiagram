@@ -44,6 +44,9 @@ end note
 
 Kopjekoffie --> Gebruiker : Lekker koffietje drinken!
 
+Gebruiker -> Filterhouder : Alles legen
+& Gebruiker -> Waterreservoir
+& Gebruiker -> Apparaat
 
 @enduml
 ```
