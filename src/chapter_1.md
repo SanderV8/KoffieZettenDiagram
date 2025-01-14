@@ -3,7 +3,6 @@
 ```plantuml
 
 @startuml 
-
 actor Gebruiker
 participant "Koffiemachine" as Machine
 participant "Waterreservoir" as Reservoir
