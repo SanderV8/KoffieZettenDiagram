@@ -3,39 +3,39 @@
 ```plantuml
 
 @startuml
-state "Zin in koffie" as Zin : Gebruiker
-state "Voorbereidingen treffen" as Voorbereiden : Gebruiker
-state "Wachten op koffie" as Wachten : Gebruiker
-state "Koffie drinken" as Drinken : Gebruiker
+state "Zin in koffie" as Gebruiker.Zin
+state "Voorbereidingen treffen" as Gebruiker.Voorbereiden
+state "Wachten op koffie" as Gebruiker.Wachten
+state "Koffie drinken" as Gebruiker.Drinken
 
-[*] --> Zin : Een lekker warm drankje zou er wel in gaan
-Zin --> Voorbereiden : Naar het apparaat lopen
-Voorbereiden --> Filter : Filter plaatsen
-Voorbereiden --> Maling : Filtermaling toevoegen 
-Voorbereiden --> Water : Water toevoegen
-Voorbereiden --> Aanzetten : Koffie zetten starten
-Aanzetten --> Wachten : Machine begint proces
-Wachten --> Drinken : Koffie is klaar
-Drinken --> Leeg : Altijd even netjes opruimen
-Leeg --> Zin : Ik lust nog wel een bakkie
+[*] --> Zin : Zin in Koffie
+Gebruiker.Zin --> Gebruiker.Voorbereiden : 1
+Gebruiker.Voorbereiden --> Gebruiker.Wachten : 2
+Gebruiker.Wachten --> Gebruiker.Drinken : 3
+Gebruiker.Voorbereiden -> Apparaat.Filter : Filter plaatsen
+Gebruiker.Voorbereiden -> Apparaat.Maling : Filtermaling toevoegen 
+Gebruiker.Voorbereiden -> Apparaat.Water : Water toevoegen
+Gebruiker.Voorbereiden -> Apparaat.Aanzetten : Koffie zetten starten
+Apparaat.Aanzetten -> Gebruiker.Wachten : Machine begint proces
+Gebruiker.Drinken -> Apparaat.Leeg : Opruimen
 @enduml
 
 
 @startuml
-state "Apparaat leeg" as Leeg : Apparaat
-state "Koffiefilter geplaatst" as Filter : Apparaat
-state "Filtermaling toegevoegd" as Maling : Apparaat
-state "Water toegevoegd" as Water : Apparaat
-state "Apparaat aan" as Aanzetten : Apparaat
-state "Koffie is klaar!" as Klaar : Apparaat
+state "Apparaat leeg" as Apparaat.Leeg
+state "Koffiefilter geplaatst" as Apparaat.Filter
+state "Filtermaling toegevoegd" as Apparaat.Maling
+state "Water toegevoegd" as Apparaat.Water
+state "Apparaat aan" as Apparaat.Aanzetten
+state "Koffie is klaar!" as Apparaat.Klaar
 
-Leeg --> Filter 
-Filter --> Maling
-Maling --> Water
-Water --> Aanzetten
-Aanzetten --> Klaar
-Aanzetten --> Leeg
-
+Apparaat.Leeg --> Apparaat.Filter : 1
+Apparaat.Filter --> Apparaat.Maling : 2
+Apparaat.Maling --> Apparaat.Water : 3
+Apparaat.Water --> Apparaat.Aanzetten : 4
+Apparaat.Aanzetten --> Apparaat.Klaar : 5
+Apparaat.Klaar -> Gebruiker.Drinken
+Apparaat.Klaar --> Apparaat.Leeg : 6
 
 @enduml
 
