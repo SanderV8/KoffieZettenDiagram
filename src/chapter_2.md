@@ -8,7 +8,7 @@ state "Voorbereidingen treffen" as Gebruiker.Voorbereiden
 state "Wachten op koffie" as Gebruiker.Wachten
 state "Koffie drinken" as Gebruiker.Drinken
 
-[*] --> Zin : Zin in Koffie
+[*] --> Gebruiker.Zin : Geur van koffie
 Gebruiker.Zin --> Gebruiker.Voorbereiden : 1
 Gebruiker.Voorbereiden --> Gebruiker.Wachten : 2
 Gebruiker.Wachten --> Gebruiker.Drinken : 3
@@ -17,7 +17,8 @@ Gebruiker.Voorbereiden -> Apparaat.Maling : Filtermaling toevoegen
 Gebruiker.Voorbereiden -> Apparaat.Water : Water toevoegen
 Gebruiker.Voorbereiden -> Apparaat.Aanzetten : Koffie zetten starten
 Apparaat.Aanzetten -> Gebruiker.Wachten : Machine begint proces
-Gebruiker.Drinken -> Apparaat.Leeg : Opruimen
+Gebruiker.Drinken --> Gebruiker.Opruimen: 4
+Gebruiker.Opruimen -> Apparaat.Leeg : Opruimen
 @enduml
 
 
