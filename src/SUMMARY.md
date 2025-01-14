@@ -1,4 +1,4 @@
 # Summary
 
-- [Chapter 1](./chapter_1.md)
-- [Chapter 2](./chapter_2.md)
+- [Diagram](./chapter_1.md)
+- [Diagram Herkansing](./chapter_2.md)
