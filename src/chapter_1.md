@@ -1,30 +1,55 @@
-# Chapter 1
+# Diagram
 
 ```plantuml
 
 @startuml 
 actor Gebruiker
-participant "Koffiemachine" as Machine
-participant "Waterreservoir" as Reservoir
-participant "Koffiebonenmaler" as Maler
-participant "Filterhouder" as Filter
-participant "Kopje" as Kopje
+participant Filterhouder
+participant Waterreservoir
+participant Apparaat
+participant Kopjekoffie
+!pragma teoz true
 
-Gebruiker -> Machine: Waterreservoir vullen
-Machine -> Reservoir: Water toevoegen
+Apparaat -> Apparaat : Helemaal leeg?
+Filterhouder -> Apparaat : Yes
+& Waterreservoir -> Apparaat : Yes
+& Apparaat -> Apparaat : Yes
 
-Gebruiker -> Maler: Koffiebonen malen
-Maler -> Gebruiker: Gemalen koffie
+Gebruiker -> Filterhouder : Koffiefilter plaatsen
+Filterhouder -> Apparaat : Koffiefilter is geplaatst
 
-Gebruiker -> Filter: Filter plaatsen
-Gebruiker -> Filter: Gemalen koffie toevoegen in filter
+Group Herhaalbaar
 
-Gebruiker -> Machine: Koffiemachine aanzetten
-Machine -> Reservoir: Water verwarmen
-Machine -> Filter: Heet water door koffie gieten
-Filter -> Kopje: Koffie laten doorlopen
+    Gebruiker -> Filterhouder : Schepje filtermaling toevoegen
+    Filterhouder -> Apparaat : Aantal schepjes + 1
 
-Gebruiker -> Kopje: Koffie inschenken
+end
+
+Group Herhaalbaar
+
+    Gebruiker -> Waterreservoir : Water toevoegen
+    Waterreservoir -> Apparaat : Waterniveau + 1
+
+end
+
+Gebruiker -> Apparaat : Apparaat aanzetten
+Apparaat -> Apparaat : Koffiezetten
+
+Apparaat -> Kopjekoffie : Klaar!
+note right
+Koffie kan waterig,
+lekker of sterk zijn
+afhankelijk van inputs
+end note
+
+Kopjekoffie --> Gebruiker : Lekker koffietje drinken!
+
+Gebruiker -> Filterhouder : Alles legen
+& Gebruiker -> Waterreservoir
+& Gebruiker -> Apparaat
 
 @enduml
 ```
+
+
+
